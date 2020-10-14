@@ -42,19 +42,61 @@ async function buildBarChart(artist) {
 //        console.log(value);
 //     });
 
-    var counts = []
 
-    Object.values(data).forEach(function(key){console.log(key,data[key])
 
-    counts.push(data[key])
-    console.log(counts)
-    });
+    // Object.values(data).forEach(function(key){console.log(key, key[value[1]])
 
-      //YEARS (incorrect)
-     var years = Object.values(data)[2]
-     data.map(x => x[years]);
-      //console.log(years);
+    // counts.push(key[value[1]])
+    // console.log(counts)
+    // });
 
+    // var counts = []
+    // for (i = 0; i < data.length; i++){
+    // Object.values(data[i]).forEach(function(key){console.log(key, key[value[1]])
+
+    //   counts.push(key[value[1]])
+    //   console.log(counts)
+    //   })};
+
+
+    // var counts = []
+
+    // for (i = 0; i < data.length; i++){
+    // Object.values(data[i]).forEach(function(value){
+    //   counts.push(value)
+    //   console.log(counts)
+    //   })};
+    
+    var Artistname = []
+    var Countlist = []
+    var Year = []
+    // var count = []
+
+    for (i = 0; i < data.length; i++){
+
+    Object.values(data[i]).forEach(function(value){
+    
+    // if (typeof value === 'number') {
+    //   Countlist.push(value)
+    // }
+    // else if (typeof value === 'string'){
+    //   Year.push(value)
+    // }
+
+    // counter = 0 + i + 1
+    if (i% 2 == 0) {
+     Countlist.push(value)
+    }
+    else if (i% 3 == 0) {
+     Year.push(value)
+    }
+    else {
+     Artistname.push(value)
+    }})};
+  
+    console.log(Artistname);
+    console.log(Countlist);
+    console.log(Year);
 
     var myChart = //new Chart(ctx, 
         {
@@ -64,7 +106,7 @@ async function buildBarChart(artist) {
         display: false
       },
       data: {
-        labels: years,
+        labels: Year,
         datasets: [{
           label: "Years",
           fill: true,
@@ -74,7 +116,7 @@ async function buildBarChart(artist) {
           borderWidth: 2,
           borderDash: [],
           borderDashOffset: 0.0,
-          data: counts,
+          data: Countlist,
         }]
       },
       //options: gradientBarChartConfiguration
